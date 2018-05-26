@@ -19,10 +19,13 @@ import { Colors } from '../components'
 
 import Auth from '../screens/auth'
 import Home from '../screens/home'
-import List from '../screens/list'
+import ActivityList from '../screens/activityList'
+import ActivityView from '../screens/activityView'
 import Calendar from '../screens/calendar'
 import Groups from '../screens/groups'
 import NewGroup from '../screens/newGroup'
+import Profile from '../screens/profile'
+import Tabs from '../screens/tabs'
 
 import { USER_QUERY } from '../graphql/user.query'
 
@@ -47,14 +50,24 @@ const GroupsStack = StackNavigator({
   initialRouteName: 'Groups'
 })
 
+const ActivityStack = StackNavigator({
+  ActivityList: { screen: ActivityList },
+  ActivityView: { screen: ActivityView }
+}, {
+  headerMode: 'none',
+  initialRouteName: 'ActivityList'
+})
+
 const DrawerStack = DrawerNavigator({
   Home: { screen: Home },
-  List: { screen: List },
+  ActivityStack: { screen: ActivityStack },
   GroupsStack: { screen: GroupsStack },
-  Calendar: { screen: Calendar }
+  Calendar: { screen: Calendar },
+  Profile: { screen: Profile },
+  Tabs: { screen: Tabs }
 }, {
   gesturesEnabled: false,
-  initialRouteName: 'GroupsStack',
+  initialRouteName: 'Tabs',
   contentComponent: DrawerContainer
 })
 

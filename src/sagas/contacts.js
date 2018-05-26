@@ -4,7 +4,9 @@ import Expo from 'expo'
 import { SET_CURRENT_USER } from '../constants/actionTypes'
 import IMPORT_CONTACTS_MUTATION from '../graphql/import-contacts.mutation'
 
-import { fetch } from '../'
+import { setCurrentUser } from '../actions/auth'
+
+import { fetch, store } from '../'
 
 async function requestPermission () {
   return Expo.Permissions.askAsync(Expo.Permissions.CONTACTS)
@@ -38,7 +40,12 @@ function * fetchContacts () {
       variables: {
         contacts
       }
-    }).then(result => console.log('result', result)).catch(err => console.log('err', err))
+    }).then(result => {
+      const contacts = result.data.importContacts
+      const user = store.getState().auth
+      user.contacts = contacts
+      store.dispatch(setCurrentUser(user))
+    })
   }
 }
 

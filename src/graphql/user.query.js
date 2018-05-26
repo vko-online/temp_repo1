@@ -5,7 +5,15 @@ export const USER_QUERY = gql`
   query currentUser {
     currentUser {
       id
+      avatar {
+        filename
+        width
+        height
+      }
+      avatar_url
       phone
+      dob
+      name
       groups {
         id
         name
@@ -25,10 +33,18 @@ export const USER_QUERY = gql`
 `
 
 export const USER_ALL_QUERY = gql`
-query users ($text: String) {
-  users (text: $text) {
-    id
-    phone
+  query users ($text: String) {
+    users (text: $text) {
+      id
+      name
+      phone
+      avatar {
+        filename
+        width
+        height
+      }
+      avatar_url
+      dob
+    }
   }
-}
 `

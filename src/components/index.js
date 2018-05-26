@@ -9,6 +9,7 @@ import Metrics from './Metrics'
 import Colors from './Colors'
 import Scene from './Scene'
 import Button from './Button'
+import DateFormat from './DateFormat'
 
 export {
   Heading1,
@@ -18,5 +19,6 @@ export {
   Metrics,
   Colors,
   Scene,
-  Button
+  Button,
+  DateFormat
 }

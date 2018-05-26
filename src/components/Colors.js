@@ -10,6 +10,10 @@ export default {
   // app internal
   lightGrey: '#f0e5f4',
   blue: '#007dcb',
+  darkText: '#032250',
+  lightText: '#7F91A7',
+  actionText: '#405cff',
+  inactiveText: '#9B9B9B',
 
   indigo500: '#3f51b5',
   deepOrange500: '#ff5722',

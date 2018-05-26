@@ -23,7 +23,7 @@ class DrawerContainer extends React.Component {
           Calendar
         </Text>
         <Text
-          onPress={() => navigation.navigate('List')}
+          onPress={() => navigation.navigate('ActivityList')}
           style={styles.uglyDrawerItem}>
           Explore
         </Text>
@@ -31,6 +31,16 @@ class DrawerContainer extends React.Component {
           onPress={() => navigation.navigate('Groups')}
           style={styles.uglyDrawerItem}>
           Groups
+        </Text>
+        <Text
+          onPress={() => navigation.navigate('Profile')}
+          style={styles.uglyDrawerItem}>
+          Profile
+        </Text>
+        <Text
+          onPress={() => navigation.navigate('Tabs')}
+          style={styles.uglyDrawerItem}>
+          Tabs
         </Text>
         <Text
           onPress={this.logout}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, YellowBox } from 'react-native'
 
 import { ApolloProvider } from 'react-apollo'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -22,7 +22,10 @@ import auth from './reducers/auth'
 import { logout } from './actions/auth'
 import sagas from './sagas'
 
-const URL = 'localhost:8080' // set your comp's url here
+// todo: remove hack for `subscriptions-transport-ws` warning
+YellowBox.ignoreWarnings(['Notice that addGraphQLSubscriptions'])
+
+const URL = '192.168.1.232:8080' // set your comp's url here
 
 const networkInterface = createBatchingNetworkInterface({
   uri: `http://${URL}/graphql`,

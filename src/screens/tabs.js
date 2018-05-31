@@ -22,7 +22,7 @@ const IoniconsAnimated = Animated.createAnimatedComponent(Ionicons)
 
 export default class BottomBarIconExample extends Component {
   state = {
-    index: 0,
+    index: 2,
     routes: [
       {
         key: 'profile',
@@ -139,9 +139,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: 'white',
     marginTop: 40
-    // shadowOffset: { width: 10, height: 10 },
-    // shadowColor: 'black'
-    // shadowOpacity: 0.7
   },
   icon__large: {
     marginTop: 0

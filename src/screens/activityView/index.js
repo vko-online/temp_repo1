@@ -11,15 +11,9 @@ import { ACTIVITY_QUERY } from '../../graphql/activity.query'
 
 import { Text, Scene } from '../../components'
 
-import BackButton from '../../navigation/BackButton'
-
 import styles from './styles'
 
 class ActivityList extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerRight: BackButton(navigation, 'close')
-  })
-
   render () {
     const { loading, activity } = this.props
 

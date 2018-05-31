@@ -10,6 +10,7 @@ import Colors from './Colors'
 import Scene from './Scene'
 import Button from './Button'
 import DateFormat from './DateFormat'
+import Draggable from './Draggable'
 
 export {
   Heading1,
@@ -20,5 +21,6 @@ export {
   Colors,
   Scene,
   Button,
-  DateFormat
+  DateFormat,
+  Draggable
 }

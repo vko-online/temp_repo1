@@ -10,6 +10,7 @@ export default {
   // app internal
   lightGrey: '#f0e5f4',
   blue: '#007dcb',
+  lightBlue: '#00adf5',
   darkText: '#032250',
   lightText: '#7F91A7',
   actionText: '#405cff',

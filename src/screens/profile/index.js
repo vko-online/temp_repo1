@@ -31,6 +31,12 @@ class Profile extends Component {
     name: get(this.props.currentUser, 'name', '')
   };
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.currentUser && nextProps.currentUser.name) {
+      this.setState({ name: nextProps.currentUser.name })
+    }
+  }
+
   handleNameChange = name => this.setState({ name });
   handleDateChange = dob => this.setState({ dob }, this.updateUser);
   handleAvatarSelect = avatar => this.setState({ avatar }, this.updateUser);

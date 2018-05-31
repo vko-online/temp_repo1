@@ -8,14 +8,11 @@ import {
 import {
   addNavigationHelpers,
   StackNavigator,
-  NavigationActions,
-  DrawerNavigator
+  NavigationActions
 } from 'react-navigation'
 import { connect } from 'react-redux'
 import { graphql, compose } from 'react-apollo'
 import { REHYDRATE } from 'redux-persist/constants'
-
-import { Colors } from '../components'
 
 import Auth from '../screens/auth'
 import Home from '../screens/home'
@@ -31,9 +28,6 @@ import { USER_QUERY } from '../graphql/user.query'
 
 import { wsClient } from '../'
 
-import DrawerContainer from './DrawerContainer'
-import DrawerButton from './DrawerButton'
-
 const noTransitionConfig = () => ({
   transitionSpec: {
     duration: 0,
@@ -42,50 +36,18 @@ const noTransitionConfig = () => ({
   }
 })
 
-const GroupsStack = StackNavigator({
-  Groups: { screen: Groups },
-  NewGroup: { screen: NewGroup }
-}, {
-  headerMode: 'none',
-  initialRouteName: 'Groups'
-})
-
-const ActivityStack = StackNavigator({
-  ActivityList: { screen: ActivityList },
-  ActivityView: { screen: ActivityView }
-}, {
-  headerMode: 'none',
-  initialRouteName: 'ActivityList'
-})
-
-const DrawerStack = DrawerNavigator({
+const CommonStack = StackNavigator({
+  Tabs: { screen: Tabs },
   Home: { screen: Home },
-  ActivityStack: { screen: ActivityStack },
-  GroupsStack: { screen: GroupsStack },
+  ActivityList: { screen: ActivityList },
+  ActivityView: { screen: ActivityView },
+  Groups: { screen: Groups },
+  NewGroup: { screen: NewGroup },
   Calendar: { screen: Calendar },
-  Profile: { screen: Profile },
-  Tabs: { screen: Tabs }
+  Profile: { screen: Profile }
 }, {
   gesturesEnabled: false,
-  initialRouteName: 'Tabs',
-  contentComponent: DrawerContainer
-})
-
-const DrawerNavigation = StackNavigator({
-  DrawerStack: { screen: DrawerStack }
-}, {
-  headerMode: 'float',
-  navigationOptions: ({navigation}) => {
-    return {
-      headerStyle: {
-        backgroundColor: Colors.lightGrey,
-        borderBottomWidth: 0
-      },
-      headerTintColor: 'white',
-      gesturesEnabled: false,
-      headerLeft: DrawerButton(navigation)
-    }
-  }
+  initialRouteName: 'Tabs'
 })
 
 const LoginStack = StackNavigator({
@@ -94,27 +56,15 @@ const LoginStack = StackNavigator({
   headerMode: 'none'
 })
 
-// const DialogStack = StackNavigator({
-//   NewGroup: { screen: NewGroup }
-// }, {
-//   navigationOptions: ({ navigation }) => ({
-//     headerStyle: {
-//       backgroundColor: Colors.lightGrey,
-//       borderBottomWidth: 0
-//     },
-//     headerLeft: BackButton(navigation)
-//   })
-// })
-
 const AppNavigator = StackNavigator(
   {
     loginStack: { screen: LoginStack },
-    drawerStack: { screen: DrawerNavigation }
+    commonStack: { screen: CommonStack }
   },
   {
     headerMode: 'none',
     title: 'Main',
-    initialRouteName: 'drawerStack',
+    initialRouteName: 'commonStack',
     transitionConfig: noTransitionConfig,
     cardStyle: {
       borderRadius: 6,
@@ -125,7 +75,7 @@ const AppNavigator = StackNavigator(
 )
 
 // reducer initialization code
-const firstAction = AppNavigator.router.getActionForPathAndParams('drawerStack')
+const firstAction = AppNavigator.router.getActionForPathAndParams('commonStack')
 const tempNavState = AppNavigator.router.getStateForAction(firstAction)
 const initialNavState = AppNavigator.router.getStateForAction(tempNavState)
 
